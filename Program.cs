@@ -2,20 +2,37 @@
 {
     static void Main()
     {
-        string mainStr = "{([";
-        string secondStr = "})]";
-        string s = "{(}))";
+        string one = "()";
+        string two = "{}";
+        string three = "[]";
 
-        for (int i = 0; i <= s.Length; i++)
+        string s = "{}(({[]}))}";
+        while (s.Length > 0)
         {
-            if (mainStr.Contains(s[0]) && s.Contains(secondStr[mainStr.IndexOf(s[0])]))
+            if (s.Contains(one))
             {
-                s = s.Remove(s.IndexOf(secondStr[mainStr.IndexOf(s[0])]), 1);
-                s = s.Remove(0, 1);
+                s = s.Replace(one, "");
+            }
+            else if (s.Contains(two))
+            {
+                s = s.Replace(two, "");
+            }
+            else if (s.Contains(three))
+            {
+                s = s.Replace(three, "");
+            }
+            else
+            {
+                break;
             }
         }
-        bool result = s.Length == 0 ? true : false;
-        Console.WriteLine(result);
-        //return result;
+        if (s.Length > 0)
+        {
+            Console.WriteLine("False");
+        }
+        else
+        {
+            Console.WriteLine("True");
+        }
     }
 }
